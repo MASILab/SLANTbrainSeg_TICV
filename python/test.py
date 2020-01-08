@@ -18,12 +18,12 @@ def print_network(net):
 parser = argparse.ArgumentParser()
 parser.add_argument('--piece', default='3_3_3', help='1_1_1 | 1_1_3 | 3_3_3 etc.')
 parser.add_argument('--model_dir', help='where the model saved')
-parser.add_argument('--test_img_dir', help='normalized image dir')
-parser.add_argument('--out_dir', help='output dir')
 parser.add_argument('--used_epoch', type=int, default=27, help='epoch of finetune model')
-
-
-
+#parser.add_argument('--test_img_dir', help='normalized image dir')
+parser.add_argument('bids_dir', help='The directory with the input dataset formatted according to the BIDS standard.')
+parser.add_argument('output_dir', help='output dir')
+parser.add_argument('analysis_level', help='Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel) using the same output_dir.choices=['participant']')
+#TODO:--participant_label
 
 opt = parser.parse_args()
 print(opt)
@@ -36,8 +36,8 @@ batch_size = 1
 lmk_num = 133
 
 model_dir = opt.model_dir
-test_img_dir = opt.test_img_dir
-out_dir = opt.out_dir
+test_img_dir = opt.bids_dir
+out_dir = opt.output_dir
 
 piece = opt.piece
 
@@ -122,16 +122,9 @@ trainer = torchsrc.Trainer(
 
 
 print("==start training==")
-
-
-start_iteration = 1
-trainer.epoch = start_epoch
-trainer.iteration = start_iteration
-trainer.test_epoch()
-
-
-
-
-
-
+if opt.analysis_level == "participant":
+	start_iteration = 1
+	trainer.epoch = start_epoch
+	trainer.iteration = start_iteration
+	trainer.test_epoch()
 

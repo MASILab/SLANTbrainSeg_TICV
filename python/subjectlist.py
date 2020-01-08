@@ -4,7 +4,8 @@ import os
 
 def get_sub_list(train_img_dir):
     image_list = []
-    image_files = glob(os.path.join(train_img_dir, "*.nii.gz"))
+    # get all the T1w images from the bids_dir
+    image_files = glob(os.path.join(train_img_dir, "*T1w.nii.gz"))
     image_files.sort()
     for name in image_files:
         image_list.append(os.path.basename(name)[:-7])
