@@ -22,7 +22,7 @@ parser.add_argument('--used_epoch', type=int, default=27, help='epoch of finetun
 #parser.add_argument('--test_img_dir', help='normalized image dir')
 parser.add_argument('bids_dir', help='The directory with the input dataset formatted according to the BIDS standard.')
 parser.add_argument('output_dir', help='output dir')
-parser.add_argument('analysis_level', help='Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel) using the same output_dir.choices=['participant']')
+parser.add_argument('analysis_level', help='Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel) using the same output_dir.choices=[participant]')
 #TODO:--participant_label
 
 opt = parser.parse_args()
