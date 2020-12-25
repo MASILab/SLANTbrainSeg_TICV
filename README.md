@@ -11,9 +11,13 @@ Run sigularity image
 1. non-skull-stripped SLANT
 
 create directories:
+
 /local/in  #put raw input image
+
 /local/out/dl  #generated output files
+
 /local/out/pre  #generated output files 
+
 /local/out/post  # final result folder
 
 Run container
@@ -22,9 +26,13 @@ singularity exec -B /local/in:/opt/slant/matlab/input_pre -B /local/in:/opt/slan
 2. skull-stripped SLANT
 
 create directories:
+
 /local/in  #put raw input image
+
 /local/out/dl  #generated output files
+
 /local/out/pre  #generated output files 
+
 /local/out/post  # final result folder
 
 Run container
