@@ -1,5 +1,5 @@
 # SLANTbrainSeg_TICV
-You can get skull-stripped brain by running 'inflate.m' in 'remove skull'. Image directories are listed in text files.
+You can get skull-stripped brain by running 'inflate.m' in 'remove skull'.
 
 Get trained models
 https://drive.google.com/drive/folders/1P9Ge1iXGiBTiP3Y9Z7d3QzXYS-Wo8ozT?usp=share_link
