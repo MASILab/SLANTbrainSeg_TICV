@@ -1,5 +1,5 @@
 clc;clear;close all;
-
+% for non-skull strip
 % test on local machine
 extra_dir = '/opt/slant/extra';
 mdir = '/opt/slant/matlab/output_pre'; 
