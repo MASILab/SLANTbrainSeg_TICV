@@ -10,6 +10,8 @@ https://drive.google.com/file/d/1f0Kyfw7RH84kt7wi_Y5eRWBVZ_YPFYMd/view?usp=share
 2. skull-stripped SLANT
 https://drive.google.com/file/d/1z6hVBQc4ICVjy6Eqr_8_v7InQ3ZAaV-T/view?usp=share_link
 
+Build new singularity, please refer to build_singularity.txt
+
 Run sigularity image
 
 1. non-skull-stripped SLANT
