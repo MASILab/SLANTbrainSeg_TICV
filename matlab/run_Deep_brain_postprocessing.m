@@ -1,5 +1,5 @@
 clc;clear;close all;
-
+% for non-skull-strip
 % addpath(genpath('/fs4/masi/huoy1/FS3_backup/software/full-multi-atlas/masi-fusion/src'));
 % addpath(genpath('/share4/huoy1/Deep_5000_Brain/code/evaluation'));
 
