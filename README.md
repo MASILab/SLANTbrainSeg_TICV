@@ -11,6 +11,7 @@ https://drive.google.com/file/d/1f0Kyfw7RH84kt7wi_Y5eRWBVZ_YPFYMd/view?usp=share
 https://drive.google.com/file/d/1zmjHiLxrrODOjFXBZBNQ9iPdbnwj-1Zw/view?usp=sharing
 
 Run sigularity image
+
 1. non-skull-stripped SLANT
 
 create directories:
@@ -24,6 +25,7 @@ create directories:
 /local/out/post  # final result folder
 
 Run container
+
 singularity exec --nv -B /local/in:/opt/slant/matlab/input_pre -B /local/in:/opt/slant/matlab/input_post -B /local/out/pre:/opt/slant/matlab/output_pre -B /local/out/dl:/opt/slant/dl/working_dir -B /local/out/post:/opt/slant/matlab/output_post -e ./nssSLANT_v1.1.simg /opt/slant/run.sh
 
 2. skull-stripped SLANT
@@ -39,4 +41,5 @@ create directories:
 /local/out/post  # final result folder
 
 Run container
+
 singularity exec -B /local/in:/opt/slant/matlab/input_pre -B /local/in:/opt/slant/matlab/input_post -B /local/out/pre:/opt/slant/matlab/output_pre -B /local/out/dl:/opt/slant/dl/working_dir -B /local/out/post:/opt/slant/matlab/output_post -e ./ssSLANT_v1.0.simg /opt/slant/run.sh
