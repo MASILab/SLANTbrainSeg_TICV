@@ -1,0 +1,77 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%setup
+mkdir -p ${SINGULARITY_ROOTFS}/opt/slant/dl
+mkdir -p ${SINGULARITY_ROOTFS}/opt/slant/matlab
+mkdir -p ${SINGULARITY_ROOTFS}/opt/slant/extra/full-multi-atlas/ANTs-bin
+mkdir -p ${SINGULARITY_ROOTFS}/opt/slant/extra/full-multi-atlas/niftyreg
+
+%files
+/media/ethanyue/Yue/201910-202110academic/SLANT/SLANTbrainSeg-master/matlab/run_Deep_brain_postprocessing /opt/slant/matlab
+/media/ethanyue/Yue/201910-202110academic/SLANT/SLANTbrainSeg-master/matlab/run_Deep_brain_preprocessing /opt/slant/matlab
+/media/ethanyue/Yue/201910-202110academic/SLANT/SLANTbrainSeg-master/matlab/input_pre /opt/slant/matlab
+/media/ethanyue/Yue/201910-202110academic/SLANT/SLANTbrainSeg-master/matlab/output_pre /opt/slant/matlab
+/media/ethanyue/Yue/201910-202110academic/SLANT/SLANTbrainSeg-master/matlab/input_post /opt/slant/matlab
+/media/ethanyue/Yue/201910-202110academic/SLANT/0825/test/python /opt/slant/dl
+/media/ethanyue/Yue/201910-202110academic/SLANT/0825/test/working_dir /opt/slant/dl
+/media/ethanyue/Yue/201910-202110academic/SLANT/nssresult/models /opt/slant/dl
+
+/media/ethanyue/Yue/201910-202110academic/SLANT/xiongy2/docker/extra/full-multi-atlas/niftyreg/bin /opt/slant/extra/full-multi-atlas/niftyreg
+/media/ethanyue/Yue/201910-202110academic/SLANT/xiongy2/docker/extra/full-multi-atlas/ANTs-bin/bin /opt/slant/extra/full-multi-atlas/ANTs-bin
+/media/ethanyue/Yue/201910-202110academic/SLANT/xiongy2/docker/extra/full-multi-atlas/MNI /opt/slant/extra/full-multi-atlas
+/media/ethanyue/Yue/201910-202110academic/SLANT/xiongy2/docker/extra/full-multi-atlas/atlas-processing /opt/slant/extra/full-multi-atlas
+
+/media/ethanyue/Yue/201910-202110academic/SLANT/container1/run.sh /opt/slant/
+
+%labels
+MAINTAINER Yue Liu <liuyueayy@gmail.com>
+
+%post
+apt-get -y update && \
+DEBIAN_FRONTEND=noninteractive \
+apt-get -y --no-install-recommends install \
+libgomp1 \
+tcsh \
+wget \
+unzip \
+libxext6 \
+python3 \
+python3-tk \
+python3-pip \
+libxt6 && \
+mkdir -p ${SINGULARITY_ROOTFS}/tmp_new/matlab_mcr && \
+cd ${SINGULARITY_ROOTFS}/tmp_new/matlab_mcr && \
+wget --progress=bar:force --no-check-certificate https://ssd.mathworks.com/supportfiles/downloads/R2021b/Release/4/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2021b_Update_4_glnxa64.zip
+unzip -q MATLAB_Runtime_R2021b_Update_4_glnxa64.zip && \
+./install -agreeToLicense yes -mode silent && \
+apt-get -y remove \
+wget \
+unzip && \
+cd .. && \
+rm -rf ${SINGULARITY_ROOTFS}/tmp_new/matlab_mcr && \
+rm -rf /var/lib/apt/lists/* && \
+
+export TMPDIR=${SINGULARITY_ROOTFS}/tmp_new
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install six
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install torch==1.12.0+cu113 torchvision==0.13.0+cu113 torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cu113
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install pytz
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install scipy
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install nibabel
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install tqdm
+TMPDIR=${SINGULARITY_ROOTFS}/tmp_new pip install numpy==1.23.1
+
+%environment
+export MCRROOT=/usr/local/MATLAB/MATLAB_Runtime/v911
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${MCRROOT}/runtime/glnxa64:${MCRROOT}/bin/glnxa64:${MCRROOT}/sys/os/glnxa64:${MCRROOT}/sys/opengl/lib/glnxa64:${MCRROOT}/extern/bin/glnxa64
+export PATH=${PATH}:${CMORPH_ROOT}/bin:${MCRROOT}/bin
+export OMP_NUM_THREADS=1
+
+%runscript
+echo "+-------------------------------------------------------+"
+echo "|                  SLANT with TICV                      |"
+echo "|                                                       |"
+echo "|  GitHub Repositories:                                 |"
+echo "|  Contact Information: Yue Liu <liuyueayy@gmail.com>   |"
+echo "+-------------------------------------------------------+"
