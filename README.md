@@ -1,6 +1,9 @@
 # SLANTbrainSeg_TICV
 You can get skull-stripped brain by running 'inflate.m' in 'remove skull'. Image directories are listed in text files.
 
+Get trained models
+https://drive.google.com/drive/folders/1P9Ge1iXGiBTiP3Y9Z7d3QzXYS-Wo8ozT?usp=share_link
+
 Get singularity image
 1. non-skull-stripped SLANT
 https://drive.google.com/file/d/1f0Kyfw7RH84kt7wi_Y5eRWBVZ_YPFYMd/view?usp=share_link
