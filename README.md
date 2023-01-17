@@ -6,7 +6,7 @@ https://drive.google.com/drive/folders/1P9Ge1iXGiBTiP3Y9Z7d3QzXYS-Wo8ozT?usp=sha
 
 Get singularity image
 1. non-skull-stripped SLANT
-https://drive.google.com/file/d/1NsK8wd9g2Sq_1WmispEkLMyw9pcr8udV/view?usp=share_link
+https://drive.google.com/file/d/12kDaofE6WtsNQnOxGo3j_62hEUrxiST3/view?usp=share_link
 2. skull-stripped SLANT
 https://drive.google.com/file/d/1z6hVBQc4ICVjy6Eqr_8_v7InQ3ZAaV-T/view?usp=share_link
 
