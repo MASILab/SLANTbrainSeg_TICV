@@ -1,19 +1,7 @@
-#import torchvision.models as models
+
 from torch import nn
-# model = models.resnet50(pretrained=True)
-# fc_features = model.fc.in_features
-# model.fc = nn.Linear(fc_features, 8)
-#import datetime
-#import os
-#import os.path as osp
-#import numpy as np
-#import pytz
-#import scipy.misc
-#import nibabel as nib
 import torch
-#from torch.autograd import Variable
-#import torch.nn.functional as F
-#import tqdm
+
 class UNet3D(nn.Module):
     def __init__(self, in_channel, n_classes):
         self.in_channel = in_channel
@@ -106,13 +94,13 @@ class UNet3D(nn.Module):
         #d0 = self.dc0(d1)
         return d1
 epoch = 4
-out = '/media/ethanyue/Yue/201910-202110academic/SLANT/nssresult/test/1_1_1/test_out/models'
+out = '/path/1_1_1/test_out/models'
 model_pth = '%s/model_epoch_%04d.pth' % (out, epoch)
-model = UNet3D(in_channel=1, n_classes=134)
+model = UNet3D(in_channel=1, n_classes=135)
 #model.load_state_dict(torch.load(model_pth))
 #model_dict = model.state_dict()
 model.load_state_dict(torch.load(model_pth))
-model.dc0 = nn.Sequential(nn.ConvTranspose3d(64, 134, 1), *list(model.dc0.children())[1:])
-model.dc1 = nn.Sequential(nn.ConvTranspose3d(133, 134, 3), *list(model.dc1.children())[1:])
-torch.save(model.state_dict(),'/media/ethanyue/Yue/201910-202110academic/SLANT/nssresult/test/1_1_1/test_out/models/134model_epoch_ft_0000.pth')
+model.dc0 = nn.Sequential(nn.ConvTranspose3d(64, 135, 1), *list(model.dc0.children())[1:])
+model.dc1 = nn.Sequential(nn.ConvTranspose3d(133, 135, 3), *list(model.dc1.children())[1:])
+torch.save(model.state_dict(),'/path/1_1_1/test_out/models/135model_epoch_ft_0000.pth')
 
