@@ -1,5 +1,7 @@
 function orig_inv_seg_file = postproc_pipeline(target_fname,final_out_dir,in,testing_T1_root_dir,mdir)
 
+% Pre-assign the output to avoid runtime error
+orig_inv_seg_file = '';
 
 working_root_dir = final_out_dir;
 working_ft_dir = mdir;
