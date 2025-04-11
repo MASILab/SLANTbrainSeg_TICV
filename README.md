@@ -1,4 +1,5 @@
 # SLANTbrainSeg_TICV
+test
 You can get skull-stripped brain by running 'inflate.m' in 'remove skull'.
 
 Get trained models
